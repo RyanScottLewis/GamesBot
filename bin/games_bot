@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require 'pathname'
+require 'bundler/setup'
+
+$:.unshift( Pathname.new( __FILE__ ).join( '..', '..', 'lib' ).to_s )
+require 'games_bot'
+
+GamesBot.start
