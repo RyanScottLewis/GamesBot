@@ -1,20 +1,15 @@
 module GamesBot
-  module Games
+  module Game
     
     # The base class for all games.
     class Base
       
       class << self
         
-        # The list of all game names and their classes
-        def all
-          @all ||= {}
-        end
-        
         def inherited(subclass)
-          name = subclass.to_s.split(/::/).last.gsub( /([A-Z\d]+)([A-Z][a-z])/,'\1_\2' ).downcase # MyCoolGame converts to my_cool_game
+          name = subclass.to_s.split(/::/).last.gsub( /([A-Z\d]+)([A-Z][a-z])/,'\1_\2' ).downcase.to_sym # GamesBot::Games::MyCoolGame converts to :my_cool_game
           
-          all[name] = subclass
+          Game.all[name] = subclass
         end
         
       end
